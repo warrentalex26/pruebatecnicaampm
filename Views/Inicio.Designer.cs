@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBProductosDataSet = new PruebaTecnica.DBProductosDataSet();
+            this.productosTableAdapter = new PruebaTecnica.DBProductosDataSetTableAdapters.ProductosTableAdapter();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.CbEstado = new System.Windows.Forms.ComboBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.existenciaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,12 +45,6 @@
             this.SubirImagen = new System.Windows.Forms.DataGridViewButtonColumn();
             this.MostrarOpciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AgregarOpcion = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dBProductosDataSet = new PruebaTecnica.DBProductosDataSet();
-            this.productosTableAdapter = new PruebaTecnica.DBProductosDataSetTableAdapters.ProductosTableAdapter();
-            this.TxtBuscar = new System.Windows.Forms.TextBox();
-            this.CbEstado = new System.Windows.Forms.ComboBox();
-            this.BtnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBProductosDataSet)).BeginInit();
@@ -52,10 +52,11 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoDataGridViewTextBoxColumn,
@@ -77,90 +78,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // codigoDataGridViewTextBoxColumn
-            // 
-            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
-            this.codigoDataGridViewTextBoxColumn.HeaderText = "codigo";
-            this.codigoDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
-            this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
-            this.nombreDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // existenciaDataGridViewTextBoxColumn
-            // 
-            this.existenciaDataGridViewTextBoxColumn.DataPropertyName = "existencia";
-            this.existenciaDataGridViewTextBoxColumn.HeaderText = "existencia";
-            this.existenciaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.existenciaDataGridViewTextBoxColumn.Name = "existenciaDataGridViewTextBoxColumn";
-            this.existenciaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.existenciaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // estadoDataGridViewCheckBoxColumn
-            // 
-            this.estadoDataGridViewCheckBoxColumn.DataPropertyName = "estado";
-            this.estadoDataGridViewCheckBoxColumn.HeaderText = "estado";
-            this.estadoDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            this.estadoDataGridViewCheckBoxColumn.Name = "estadoDataGridViewCheckBoxColumn";
-            this.estadoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.estadoDataGridViewCheckBoxColumn.Width = 125;
-            // 
-            // nombreProveedorDataGridViewTextBoxColumn
-            // 
-            this.nombreProveedorDataGridViewTextBoxColumn.DataPropertyName = "nombreProveedor";
-            this.nombreProveedorDataGridViewTextBoxColumn.HeaderText = "nombreProveedor";
-            this.nombreProveedorDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nombreProveedorDataGridViewTextBoxColumn.Name = "nombreProveedorDataGridViewTextBoxColumn";
-            this.nombreProveedorDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreProveedorDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // imagenProductoDataGridViewImageColumn
-            // 
-            this.imagenProductoDataGridViewImageColumn.DataPropertyName = "imagenProducto";
-            this.imagenProductoDataGridViewImageColumn.HeaderText = "imagenProducto";
-            this.imagenProductoDataGridViewImageColumn.MinimumWidth = 6;
-            this.imagenProductoDataGridViewImageColumn.Name = "imagenProductoDataGridViewImageColumn";
-            this.imagenProductoDataGridViewImageColumn.ReadOnly = true;
-            this.imagenProductoDataGridViewImageColumn.Width = 125;
-            // 
-            // SubirImagen
-            // 
-            this.SubirImagen.HeaderText = "Subir Imagen";
-            this.SubirImagen.MinimumWidth = 6;
-            this.SubirImagen.Name = "SubirImagen";
-            this.SubirImagen.ReadOnly = true;
-            this.SubirImagen.Text = "Subir Imagen";
-            this.SubirImagen.UseColumnTextForButtonValue = true;
-            this.SubirImagen.Width = 125;
-            // 
-            // MostrarOpciones
-            // 
-            this.MostrarOpciones.HeaderText = "Mostrar Opciones";
-            this.MostrarOpciones.MinimumWidth = 6;
-            this.MostrarOpciones.Name = "MostrarOpciones";
-            this.MostrarOpciones.ReadOnly = true;
-            this.MostrarOpciones.Text = "Mostrar Opciones";
-            this.MostrarOpciones.UseColumnTextForButtonValue = true;
-            this.MostrarOpciones.Width = 125;
-            // 
-            // AgregarOpcion
-            // 
-            this.AgregarOpcion.HeaderText = "Agregar Opcion";
-            this.AgregarOpcion.MinimumWidth = 6;
-            this.AgregarOpcion.Name = "AgregarOpcion";
-            this.AgregarOpcion.ReadOnly = true;
-            this.AgregarOpcion.Text = "Agregar Opcion";
-            this.AgregarOpcion.UseColumnTextForButtonValue = true;
-            this.AgregarOpcion.Width = 125;
-            // 
             // productosBindingSource
             // 
             this.productosBindingSource.DataMember = "Productos";
@@ -178,32 +95,112 @@
             // 
             // TxtBuscar
             // 
-            this.TxtBuscar.Location = new System.Drawing.Point(31, 58);
+            this.TxtBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtBuscar.Location = new System.Drawing.Point(582, 58);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(309, 22);
             this.TxtBuscar.TabIndex = 1;
             // 
             // CbEstado
             // 
+            this.CbEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CbEstado.FormattingEnabled = true;
             this.CbEstado.Items.AddRange(new object[] {
             "Inactivo",
             "Activo",
             "Todos"});
-            this.CbEstado.Location = new System.Drawing.Point(362, 58);
+            this.CbEstado.Location = new System.Drawing.Point(913, 58);
             this.CbEstado.Name = "CbEstado";
             this.CbEstado.Size = new System.Drawing.Size(170, 24);
             this.CbEstado.TabIndex = 2;
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(559, 59);
+            this.BtnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnBuscar.Location = new System.Drawing.Point(1110, 59);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(145, 23);
             this.BtnBuscar.TabIndex = 3;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            // 
+            // codigoDataGridViewTextBoxColumn
+            // 
+            this.codigoDataGridViewTextBoxColumn.DataPropertyName = "codigo";
+            this.codigoDataGridViewTextBoxColumn.HeaderText = "codigo";
+            this.codigoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
+            this.codigoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // existenciaDataGridViewTextBoxColumn
+            // 
+            this.existenciaDataGridViewTextBoxColumn.DataPropertyName = "existencia";
+            this.existenciaDataGridViewTextBoxColumn.HeaderText = "existencia";
+            this.existenciaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.existenciaDataGridViewTextBoxColumn.Name = "existenciaDataGridViewTextBoxColumn";
+            this.existenciaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estadoDataGridViewCheckBoxColumn
+            // 
+            this.estadoDataGridViewCheckBoxColumn.DataPropertyName = "estado";
+            this.estadoDataGridViewCheckBoxColumn.HeaderText = "estado";
+            this.estadoDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            this.estadoDataGridViewCheckBoxColumn.Name = "estadoDataGridViewCheckBoxColumn";
+            this.estadoDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // nombreProveedorDataGridViewTextBoxColumn
+            // 
+            this.nombreProveedorDataGridViewTextBoxColumn.DataPropertyName = "nombreProveedor";
+            this.nombreProveedorDataGridViewTextBoxColumn.HeaderText = "nombreProveedor";
+            this.nombreProveedorDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nombreProveedorDataGridViewTextBoxColumn.Name = "nombreProveedorDataGridViewTextBoxColumn";
+            this.nombreProveedorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // imagenProductoDataGridViewImageColumn
+            // 
+            this.imagenProductoDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.imagenProductoDataGridViewImageColumn.DataPropertyName = "imagenProducto";
+            this.imagenProductoDataGridViewImageColumn.HeaderText = "imagenProducto";
+            this.imagenProductoDataGridViewImageColumn.MinimumWidth = 6;
+            this.imagenProductoDataGridViewImageColumn.Name = "imagenProductoDataGridViewImageColumn";
+            this.imagenProductoDataGridViewImageColumn.ReadOnly = true;
+            this.imagenProductoDataGridViewImageColumn.Width = 130;
+            // 
+            // SubirImagen
+            // 
+            this.SubirImagen.HeaderText = "Subir Imagen";
+            this.SubirImagen.MinimumWidth = 6;
+            this.SubirImagen.Name = "SubirImagen";
+            this.SubirImagen.ReadOnly = true;
+            this.SubirImagen.Text = "Subir Imagen";
+            this.SubirImagen.UseColumnTextForButtonValue = true;
+            // 
+            // MostrarOpciones
+            // 
+            this.MostrarOpciones.HeaderText = "Mostrar Opciones";
+            this.MostrarOpciones.MinimumWidth = 6;
+            this.MostrarOpciones.Name = "MostrarOpciones";
+            this.MostrarOpciones.ReadOnly = true;
+            this.MostrarOpciones.Text = "Mostrar Opciones";
+            this.MostrarOpciones.UseColumnTextForButtonValue = true;
+            // 
+            // AgregarOpcion
+            // 
+            this.AgregarOpcion.HeaderText = "Agregar Opcion";
+            this.AgregarOpcion.MinimumWidth = 6;
+            this.AgregarOpcion.Name = "AgregarOpcion";
+            this.AgregarOpcion.ReadOnly = true;
+            this.AgregarOpcion.Text = "Agregar Opcion";
+            this.AgregarOpcion.UseColumnTextForButtonValue = true;
             // 
             // Inicio
             // 

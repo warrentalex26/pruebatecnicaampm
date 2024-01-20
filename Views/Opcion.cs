@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PruebaTecnica.Clases;
 
 namespace PruebaTecnica.Views
 {
@@ -28,28 +29,9 @@ namespace PruebaTecnica.Views
         {
             var opcion = TxtOpcion.Text;
             var productoRelacionado = this.idProducto;
-            bool estado = false;
+            bool estado = CbEstado.SelectedItem?.ToString() == "Activo";
 
-            switch (CbEstado.SelectedItem?.ToString())
-            {
-                case "Activo":
-                    estado = true;
-                    break;
-                case "Inactivo":
-                    estado = false;
-                    break;
-            }
-
-            using (Models.DBProductosEntities db = new Models.DBProductosEntities())
-            {
-                Models.Opciones nuevaOpcion = new Models.Opciones();
-                nuevaOpcion.nombreOpcion = opcion;
-                nuevaOpcion.productoRelacionado = productoRelacionado;
-                nuevaOpcion.estado = estado;
-                db.Opciones.Add(nuevaOpcion);
-                db.SaveChanges();
-
-            }
+            GestionarOpciones.GuardarOpcion(opcion, productoRelacionado, estado);
             MessageBox.Show("Opción guardada con éxito");
             this.Close();
         }

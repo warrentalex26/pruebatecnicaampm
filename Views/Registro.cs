@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PruebaTecnica.Clases;
 
 namespace PruebaTecnica
 {
@@ -49,32 +50,18 @@ namespace PruebaTecnica
                 return;
             }
 
+            bool usuarioRegistrado = RegistroUsuario.RegistrarUsuario(usuario, contrasena, nombre, apellido, correo, telefono);
+
+            if (usuarioRegistrado)
+            {
+                MessageBox.Show("Usuario registrado con éxito");
+                Login login = new Login();
+                login.Show();
+                this.Hide();
+            }
             else
             {
-                try
-                {
-                    using (Models.DBProductosEntities db = new Models.DBProductosEntities())
-                    {
-                        Models.Usuarios usuarioNuevo = new Models.Usuarios();
-                        usuarioNuevo.nombreUsuario = usuario;
-                        usuarioNuevo.contraseña = contrasena;
-                        usuarioNuevo.nombre = nombre;
-                        usuarioNuevo.apellido = apellido;
-                        usuarioNuevo.correo = correo;
-                        usuarioNuevo.telefono = telefono;
-                        usuarioNuevo.fechaCreacion = DateTime.Now;
-                        db.Usuarios.Add(usuarioNuevo);
-                        db.SaveChanges();
-                    }
-                    MessageBox.Show("Usuario registrado con éxito");
-                    Login login = new Login();
-                    login.Show();
-                    this.Hide();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("El usuario ya existe");
-                }   
+                MessageBox.Show("El usuario ya existe o ha ocurrido un error");
             }
         }
     }

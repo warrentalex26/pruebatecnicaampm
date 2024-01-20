@@ -68,6 +68,7 @@
             this.TxtContrasena.Name = "TxtContrasena";
             this.TxtContrasena.Size = new System.Drawing.Size(239, 22);
             this.TxtContrasena.TabIndex = 3;
+            this.TxtContrasena.UseSystemPasswordChar = true;
             // 
             // BtnIniciarSesion
             // 

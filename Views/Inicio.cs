@@ -24,6 +24,7 @@ namespace PruebaTecnica.Views
         private void Inicio_Load(object sender, EventArgs e)
         {
             this.productosTableAdapter.Fill(this.dBProductosDataSet.Productos);
+            AjustarImagenesEnDataGridView();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -34,14 +35,26 @@ namespace PruebaTecnica.Views
                 byte[] imagen = GestionarImagen.SeleccionarYConvertirImagen();
                 if (imagen != null)
                 {
-                    GestionarImagen.GuardarImagenEnBaseDeDatos(idProducto, imagen);
-                    Image imagenMostrar = Image.FromStream(new MemoryStream(imagen));
-                    dataGridView1.Rows[e.RowIndex].Cells[5].Value = imagenMostrar;
+                    try
+                    {
+                        Size tamañoDeseado = new Size(100, 100);
+                        GestionarImagen.GuardarImagenEnBaseDeDatos(idProducto, imagen, tamañoDeseado);
+
+                        using (var ms = new MemoryStream(imagen))
+                        {
+                            Image imagenOriginal = Image.FromStream(ms);
+                            Image imagenRedimensionada = GestionarImagen.RedimensionarImagen(imagenOriginal, tamañoDeseado);
+                            dataGridView1.Rows[e.RowIndex].Cells[5].Value = imagenRedimensionada;
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        MessageBox.Show("El archivo seleccionado no es una imagen válida.");
+                    }
                 }
             }
             if (e.ColumnIndex == 7)
             {
-                
                 MostrarOpcionesDelProducto(idProducto);
             }
 
@@ -119,6 +132,20 @@ namespace PruebaTecnica.Views
         private void OpcionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             FiltrarProductos();
+        }
+
+        private void AjustarImagenesEnDataGridView()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[5].Value is byte[] imagenBytes)
+                {
+                    Image imagenOriginal = Image.FromStream(new MemoryStream(imagenBytes));
+                    Size tamañoCelda = new Size(100, 100);
+                    Image imagenRedimensionada = GestionarImagen.RedimensionarImagen(imagenOriginal, tamañoCelda);
+                    row.Cells[5].Value = imagenRedimensionada;
+                }
+            }
         }
 
         private void productosBindingSource_CurrentChanged(object sender, EventArgs e)

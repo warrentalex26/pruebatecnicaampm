@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\GestionarImagen.cs" />
+    <Compile Include="Clases\GestionarOpciones.cs" />
+    <Compile Include="Clases\RegistroUsuario.cs" />
     <Compile Include="DBProductosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

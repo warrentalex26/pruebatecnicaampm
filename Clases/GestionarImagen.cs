@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,19 +20,41 @@ namespace PruebaTecnica.Clases
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                return System.IO.File.ReadAllBytes(fileDialog.FileName);
+                return File.ReadAllBytes(fileDialog.FileName);
             }
             return null;
         }
 
-        public static void GuardarImagenEnBaseDeDatos(int idProducto, byte[] imagen)
+        public static void GuardarImagenEnBaseDeDatos(int idProducto, byte[] imagen, Size tamañoDeseado)
         {
-            using (Models.DBProductosEntities db = new Models.DBProductosEntities())
+            try
             {
-                Models.Productos producto = db.Productos.Find(idProducto);
-                producto.imagenProducto = imagen;
-                db.SaveChanges();
+                Image imagenOriginal = Image.FromStream(new MemoryStream(imagen));
+                Image imagenRedimensionada = RedimensionarImagen(imagenOriginal, tamañoDeseado);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imagenRedimensionada.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] imagenBytes = ms.ToArray();
+
+                    using (Models.DBProductosEntities db = new Models.DBProductosEntities())
+                    {
+                        Models.Productos producto = db.Productos.Find(idProducto);
+                        producto.imagenProducto = imagenBytes;
+                        db.SaveChanges();
+                    }
+                }
             }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("El archivo seleccionado no es una imagen válida.");
+            }
+        }
+
+
+        public static Image RedimensionarImagen(Image imagenOriginal, Size tamaño)
+        {
+            return (Image)(new Bitmap(imagenOriginal, tamaño));
         }
     }
 }
