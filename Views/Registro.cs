@@ -29,11 +29,23 @@ namespace PruebaTecnica
             string nombre = TxtNombre.Text.Trim();
             string apellido = TxtApellido.Text.Trim();
             string correo = TxtCorreo.Text.Trim();
-            string telefono = TxtTelefono.Text.Trim();
+            string telefono = TxtTelefonoMasked.Text.Trim();
 
             if (usuario == "" || contrasena == "" || nombre == "" || apellido == "" || correo == "" || telefono == "")
             {
                 MessageBox.Show("Por favor llene todos los campos");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(correo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Por favor ingrese un correo válido");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(telefono, @"^[0-9]{4}-[0-9]{4}$"))
+            {
+                MessageBox.Show("Por favor ingrese un teléfono válido");
                 return;
             }
 

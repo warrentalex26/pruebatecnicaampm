@@ -40,7 +40,7 @@
             this.TxtCorreo = new System.Windows.Forms.TextBox();
             this.BtnRegistro = new System.Windows.Forms.Button();
             this.LblTelefono = new System.Windows.Forms.Label();
-            this.TxtTelefono = new System.Windows.Forms.TextBox();
+            this.TxtTelefonoMasked = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // LblUsuario
@@ -144,19 +144,21 @@
             this.LblTelefono.TabIndex = 11;
             this.LblTelefono.Text = "Telefono";
             // 
-            // TxtTelefono
+            // TxtTelefonoMasked
             // 
-            this.TxtTelefono.Location = new System.Drawing.Point(144, 317);
-            this.TxtTelefono.Name = "TxtTelefono";
-            this.TxtTelefono.Size = new System.Drawing.Size(234, 22);
-            this.TxtTelefono.TabIndex = 12;
+            this.TxtTelefonoMasked.Location = new System.Drawing.Point(144, 320);
+            this.TxtTelefonoMasked.Mask = "0000-0000";
+            this.TxtTelefonoMasked.Name = "TxtTelefonoMasked";
+            this.TxtTelefonoMasked.Size = new System.Drawing.Size(83, 22);
+            this.TxtTelefonoMasked.TabIndex = 13;
+            this.TxtTelefonoMasked.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 482);
-            this.Controls.Add(this.TxtTelefono);
+            this.Controls.Add(this.TxtTelefonoMasked);
             this.Controls.Add(this.LblTelefono);
             this.Controls.Add(this.BtnRegistro);
             this.Controls.Add(this.TxtCorreo);
@@ -192,6 +194,6 @@
         private System.Windows.Forms.TextBox TxtCorreo;
         private System.Windows.Forms.Button BtnRegistro;
         private System.Windows.Forms.Label LblTelefono;
-        private System.Windows.Forms.TextBox TxtTelefono;
+        private System.Windows.Forms.MaskedTextBox TxtTelefonoMasked;
     }
 }
