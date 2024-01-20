@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBProductosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Opciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreOpcion" Type="nvarchar" MaxLength="100" />
+    <Property Name="productoRelacionado" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="existencia" Type="int" />
+    <Property Name="estado" Type="bit" />
+    <Property Name="nombreProveedor" Type="nvarchar" MaxLength="100" />
+    <Property Name="imagenProducto" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="nombreUsuario" />
+    </Key>
+    <Property Name="nombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contraseña" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="apellido" Type="nvarchar" MaxLength="100" />
+    <Property Name="correo" Type="nvarchar" MaxLength="100" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="15" />
+    <Property Name="fechaCreacion" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Opciones__produc__3B75D760">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Opciones" Type="Self.Opciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="codigo" />
+      </Principal>
+      <Dependent Role="Opciones">
+        <PropertyRef Name="productoRelacionado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBProductosModelStoreContainer">
+    <EntitySet Name="Opciones" EntityType="Self.Opciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Opciones__produc__3B75D760" Association="Self.FK__Opciones__produc__3B75D760">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Opciones" EntitySet="Opciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
