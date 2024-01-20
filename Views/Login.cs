@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PruebaTecnica.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,7 +36,10 @@ namespace PruebaTecnica
 
                 if (lista.Count() > 0)
                 {
-                    MessageBox.Show("Si");
+                    Inicio inicio = new Inicio();
+                    inicio.Show();
+                    this.Hide();
+                    
                 }
                 else
                 {

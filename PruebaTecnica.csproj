@@ -55,6 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\GestionarImagen.cs" />
+    <Compile Include="DBProductosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBProductosDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,9 @@
     <Compile Include="Views\Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +127,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBProductos.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DBProductosDataSet.xsc">
+      <DependentUpon>DBProductosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DBProductosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBProductosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DBProductosDataSet.xss">
+      <DependentUpon>DBProductosDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Models\DBProductos.edmx.diagram">
       <DependentUpon>DBProductos.edmx</DependentUpon>
     </None>
@@ -144,8 +170,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
