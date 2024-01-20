@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PruebaTecnica.Clases;
+using PruebaTecnica.Views;
 
 namespace PruebaTecnica.Views
 {
@@ -26,17 +28,28 @@ namespace PruebaTecnica.Views
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int idProducto = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             if (e.ColumnIndex == 6)
             {
                 byte[] imagen = GestionarImagen.SeleccionarYConvertirImagen();
                 if (imagen != null)
                 {
-                    int idProducto = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
                     GestionarImagen.GuardarImagenEnBaseDeDatos(idProducto, imagen);
-
                     Image imagenMostrar = Image.FromStream(new MemoryStream(imagen));
                     dataGridView1.Rows[e.RowIndex].Cells[5].Value = imagenMostrar;
                 }
+            }
+            if (e.ColumnIndex == 7)
+            {
+                
+                MostrarOpcionesDelProducto(idProducto);
+            }
+
+            if (e.ColumnIndex == 8)
+            {
+                Opcion opcionForm = new Opcion(idProducto);
+                opcionForm.FormClosed += new FormClosedEventHandler(OpcionForm_FormClosed);
+                opcionForm.ShowDialog();
             }
         }
 
@@ -80,5 +93,37 @@ namespace PruebaTecnica.Views
             }
         }
 
+        private void MostrarOpcionesDelProducto(int idProducto)
+        {
+            using (var db = new Models.DBProductosEntities())
+            {
+                var opciones = db.Opciones.Where(o => o.productoRelacionado == idProducto).ToList();
+
+                if (opciones.Any())
+                {
+                    StringBuilder opcionesTexto = new StringBuilder();
+                    foreach (var opcion in opciones)
+                    {
+                        opcionesTexto.AppendLine(opcion.nombreOpcion);
+                    }
+
+                    MessageBox.Show(opcionesTexto.ToString(), "Opciones del Producto");
+                }
+                else
+                {
+                    MessageBox.Show("Este producto no tiene opciones asociadas.", "Sin Opciones");
+                }
+            }
+        }
+
+        private void OpcionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FiltrarProductos();
+        }
+
+        private void productosBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dBProductosDataSet = new PruebaTecnica.DBProductosDataSet();
-            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productosTableAdapter = new PruebaTecnica.DBProductosDataSetTableAdapters.ProductosTableAdapter();
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.existenciaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,12 +37,17 @@
             this.nombreProveedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imagenProductoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.SubirImagen = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.MostrarOpciones = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AgregarOpcion = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBProductosDataSet = new PruebaTecnica.DBProductosDataSet();
+            this.productosTableAdapter = new PruebaTecnica.DBProductosDataSetTableAdapters.ProductosTableAdapter();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.CbEstado = new System.Windows.Forms.ComboBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBProductosDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBProductosDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -62,30 +64,18 @@
             this.estadoDataGridViewCheckBoxColumn,
             this.nombreProveedorDataGridViewTextBoxColumn,
             this.imagenProductoDataGridViewImageColumn,
-            this.SubirImagen});
+            this.SubirImagen,
+            this.MostrarOpciones,
+            this.AgregarOpcion});
             this.dataGridView1.DataSource = this.productosBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(116, 120);
+            this.dataGridView1.Location = new System.Drawing.Point(30, 112);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(932, 330);
+            this.dataGridView1.Size = new System.Drawing.Size(1225, 330);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // dBProductosDataSet
-            // 
-            this.dBProductosDataSet.DataSetName = "DBProductosDataSet";
-            this.dBProductosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productosBindingSource
-            // 
-            this.productosBindingSource.DataMember = "Productos";
-            this.productosBindingSource.DataSource = this.dBProductosDataSet;
-            // 
-            // productosTableAdapter
-            // 
-            this.productosTableAdapter.ClearBeforeFill = true;
             // 
             // codigoDataGridViewTextBoxColumn
             // 
@@ -151,9 +141,44 @@
             this.SubirImagen.UseColumnTextForButtonValue = true;
             this.SubirImagen.Width = 125;
             // 
+            // MostrarOpciones
+            // 
+            this.MostrarOpciones.HeaderText = "Mostrar Opciones";
+            this.MostrarOpciones.MinimumWidth = 6;
+            this.MostrarOpciones.Name = "MostrarOpciones";
+            this.MostrarOpciones.ReadOnly = true;
+            this.MostrarOpciones.Text = "Mostrar Opciones";
+            this.MostrarOpciones.UseColumnTextForButtonValue = true;
+            this.MostrarOpciones.Width = 125;
+            // 
+            // AgregarOpcion
+            // 
+            this.AgregarOpcion.HeaderText = "Agregar Opcion";
+            this.AgregarOpcion.MinimumWidth = 6;
+            this.AgregarOpcion.Name = "AgregarOpcion";
+            this.AgregarOpcion.ReadOnly = true;
+            this.AgregarOpcion.Text = "Agregar Opcion";
+            this.AgregarOpcion.UseColumnTextForButtonValue = true;
+            this.AgregarOpcion.Width = 125;
+            // 
+            // productosBindingSource
+            // 
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.dBProductosDataSet;
+            this.productosBindingSource.CurrentChanged += new System.EventHandler(this.productosBindingSource_CurrentChanged);
+            // 
+            // dBProductosDataSet
+            // 
+            this.dBProductosDataSet.DataSetName = "DBProductosDataSet";
+            this.dBProductosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productosTableAdapter
+            // 
+            this.productosTableAdapter.ClearBeforeFill = true;
+            // 
             // TxtBuscar
             // 
-            this.TxtBuscar.Location = new System.Drawing.Point(354, 54);
+            this.TxtBuscar.Location = new System.Drawing.Point(31, 58);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(309, 22);
             this.TxtBuscar.TabIndex = 1;
@@ -165,14 +190,14 @@
             "Inactivo",
             "Activo",
             "Todos"});
-            this.CbEstado.Location = new System.Drawing.Point(685, 54);
+            this.CbEstado.Location = new System.Drawing.Point(362, 58);
             this.CbEstado.Name = "CbEstado";
             this.CbEstado.Size = new System.Drawing.Size(170, 24);
             this.CbEstado.TabIndex = 2;
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(903, 55);
+            this.BtnBuscar.Location = new System.Drawing.Point(559, 59);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(145, 23);
             this.BtnBuscar.TabIndex = 3;
@@ -194,8 +219,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Inicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBProductosDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBProductosDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,6 +232,9 @@
         private DBProductosDataSet dBProductosDataSet;
         private System.Windows.Forms.BindingSource productosBindingSource;
         private DBProductosDataSetTableAdapters.ProductosTableAdapter productosTableAdapter;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.ComboBox CbEstado;
+        private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn existenciaDataGridViewTextBoxColumn;
@@ -214,8 +242,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProveedorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn imagenProductoDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewButtonColumn SubirImagen;
-        private System.Windows.Forms.TextBox TxtBuscar;
-        private System.Windows.Forms.ComboBox CbEstado;
-        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.DataGridViewButtonColumn MostrarOpciones;
+        private System.Windows.Forms.DataGridViewButtonColumn AgregarOpcion;
     }
 }
